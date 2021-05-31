@@ -1,0 +1,238 @@
+-- --------------------------------------------------
+-- FRONT - ANGULAR
+-- --------------------------------------------------
+
+0.- Anteriormente, ya había hecho alguna aplicación de angular como prueba, asi que muchas como como Angular CLI ya lo tenía instalado, solo faltaba actualizar las herramientas...
+
+1.- Habría que actualizar/instalar el devkit de angular:
+	npm install -g @angular/cli
+
+2.- Saltaron advertencias por incompatibilidad de la versión de npm, se procedió a actualizar a la versión mas reciente (7.15.0)
+	npm install -g npm@next
+
+3.- Se ejecuto de nuevo el comando del punto 1
+
+4.- Saltaron mas advertencias, pero ahora con incompatbilidad de nodejs, se descargo la ultima versión (14.17.0)
+	https://nodejs.org/en/download/
+
+5.- Al parecer el instalador ya venia con npm, no fue necesario el punto 1 - 3
+
+6.- Ahora ejecutamos el comando del punto 1, al parecer todo estuvo bien, solo 3 advertencias:
+
+	npm WARN deprecated uuid@3.4.0: Please upgrade  to version 7 or higher.  Older versions may use Math.random() in certain circumstances, which is known to be problematic.  See https://v8.dev/blog/math-random for details.
+	npm WARN deprecated har-validator@5.1.5: this library is no longer supported
+	npm WARN deprecated request@2.88.2: request has been deprecated, see https://github.com/request/request/issues/3142
+	
+	No tengo idea de que hacer para "corregirlas"
+
+7.- Ahora creamos la app
+	ng new bison-app
+	
+	7.1.- Nos pregunto si queriamos agregar rutas, dimos y
+	7.2.- Usamos CSS normal
+	
+8.- Después de un rato, al parecer todo resulto bien :)
+
+9.- Abrimos la carpeta de la app con vs code, abrimos terminal y corremos el comando para compilar y recompilar al detectar algún cambio en la app al guardar CTRL + S
+	ng serve
+	
+10.- Por default, el servidor escucha al puerto 4200
+	http://localhost:4200/
+	
+11.- Ahora, instalamos el tema visual recomendado por angular en su página de inicio
+	ng add @angular/material
+	
+	11.1.- Nos pidio si queriamos un tema ya definido o custom, escogimos custom
+	11.2.- Se creo un archivo al parecer poner los estilos manualmente
+			src/custom-theme.scss
+			
+12.- Se quizo agregar una interfaz de sidebar
+	https://material.angular.io/components/sidenav/overview
+	
+	Pero marcaba errores:
+		'mat-toolbar' is not a known element
+		
+	Al parecer siempre que se va a agregar un componente de angular material hay que agregar el modulo al archivo
+		src/app/app.module.ts
+		
+	En este caso
+		import {MatSidenavModule} from '@angular/material/sidenav';
+
+	Y el apartado @NgModule - imports
+	
+13.- Alch que ueba agregar uno por uno, investigue y descubrí que se puede crear un archivo .ts en donde se importan cada uno de los modulos de angular material
+	src/app/material-module.ts
+	
+	Y ahora en el archivo
+	src/app/app.module.ts
+	
+	Habría que importar el archivo material-module.ts
+	import {MaterialModule} from './material-module'
+	
+	Y por último agregarlo al @NgModule - imports
+	MaterialModule
+			
+-- --------------------------------------------------
+-- BACK - ASP NET CORE 5
+-- --------------------------------------------------
+
+0.- Se utilizo SQL Server 2019 Express para base de datos
+	bison-bd/script_bison.sql
+
+1.- Hay que agregar entity framework core, con estos comandos y/o instrucciones (https://docs.microsoft.com/en-us/ef/core/get-started/overview/install):
+
+	En -> Tools > NuGet Package Manager > Package Manager Console, ejecutar el siguiente comando
+	Install-Package Microsoft.EntityFrameworkCore.SqlServer
+	
+	Ahora agregamos las herramientas
+	Install-Package Microsoft.EntityFrameworkCore.Tools
+	
+2.- Ya instalado el ef core, tenemos que crear una clase (.cs) de contexto, para asi poder tener varias funcionalidades, como agregar tablas (https://github.com/Naisroan/Xchangez_BACK/blob/master/Clases/XchangezContext.cs)
+	
+3.- Para usar mejor scripts de tipo .sql (en lugar de crear todo en c# con clases, usamos sql management studio), tenemos que usar ingenieria inversa (https://docs.microsoft.com/en-us/ef/core/managing-schemas/scaffolding?tabs=dotnet-core-cli)
+	lo que esto hará, es que, todo lo creado en base a una base de datos, se recreará como clases en el proyecto (tablas, campos, vistas, etc.) como normalmente se hace con
+	Entity Framework .NET
+	
+		bison/bd/script_bison.sql
+	
+	Ahora hay que ejecutar los siguientes comandos:
+	
+		Scaffold-DbContext '<string connection>' Microsoft.EntityFrameworkCore.SqlServer ContextDir <directorio donde estará el contexto> -OutputDir <directorio donde se crearán las clases para cada tabla>
+		
+		Proceso:
+		
+		a) Agregamos la conexion en 
+			
+			appsettings.json:
+			
+			"ConnectionStrings": {
+				"bison_connection": "data source=NAISROAN-Y720\\SQL19E;initial catalog=bison;persist security info=True;user id=sa;password=a1234567890A;"
+			},
+			
+		b) Ya hecho el paso a, copiamos la conexión en el comando
+		
+			Scaffold-DbContext
+				-Connection 'data source=NAISROAN-Y720\\SQL19E;initial catalog=bison;persist security info=True;user id=sa;password=a1234567890A;'
+				-Provider 'Microsoft.EntityFrameworkCore.SqlServer'
+				-ContextDir 'Model'
+				-OutputDir 'Model'
+			
+		ContextDir y OutputDir indican en donde se crearán las clases (se crean automáticamente al ejecutar el comando)
+		
+		Comando final (solo se paso a una línea):
+		
+			Scaffold-DbContext -Connection 'data source=NAISROAN-Y720\\SQL19E;initial catalog=bison;persist security info=True;user id=sa;password=a1234567890A;' -Provider 'Microsoft.EntityFrameworkCore.SqlServer' -ContextDir 'Model' -OutputDir 'Model'
+			
+4.- Al intentar usar el comando final salió una advertencia acompañada de un error:
+
+		Advertencia: To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration
+		Error: Instance failure.
+		
+	Se arregló cambiando las \\ por una \
+	
+		Scaffold-DbContext -Connection 'data source=NAISROAN-Y720\SQL19E;initial catalog=bison;persist security info=True;user id=sa;password=a1234567890A;' -Provider 'Microsoft.EntityFrameworkCore.SqlServer' -ContextDir 'Model' -OutputDir 'Model'
+		
+	Pero no se agregaron las tablas... era porque no estaban creadas jiji
+	
+5.- Sopresa en ASP.NET 5 Core, se agregaron dos opciones al usar el comando:
+
+		-NoOnConfiguring	Don't generate DbContext.OnConfiguring. Added in EF Core 5.0.
+		-NoPluralize		Don't use the pluralizer. Added in EF Core 5.0.
+		
+6.- Se agrego en Startup.cs en la función ConfigureServices, lo necesario para configurar efcore
+		
+7.- Al parecer ya esta todo listo, ahora hay que agregar swagger, para que se nos haga mas facil usar la api y sus endpoints (se crea una interfaz grafica) (https://geeks.ms/jorge/2020/06/01/anadir-swagger-a-una-web-api-con-asp-net-core-3-1/)
+
+		Install-Package Swashbuckle.AspNetCore -Version 6.1.4
+		
+	Me base en la configuración de instalación de https://github.com/Naisroan/Xchangez_BACK/blob/master/Startup.cs que afortundamente ya incluye la configuración
+	de seguridad por tokens
+	
+8.- Al adaptar las funcions de swagger de https://github.com/Naisroan/Xchangez_BACK/blob/master/Startup.cs se hace uso de JWTBearer, se instala con el siguiente comando:
+
+		Install-Package Microsoft.AspNetCore.Authentication.JwtBearer -Version 5.0.6
+		
+9.- Agregamos la autenticacion por token ya que andamos ahí en base a https://github.com/Naisroan/Xchangez_BACK/blob/master/Startup.cs
+
+		app.UseAuthentication();
+		
+10.- Instalamos el AutoMapper para poder mandar en formato JSON los objetos (DTO) de la api al front
+		
+			Install-Package AutoMapper.Extensions.Microsoft.DependencyInjection
+			services.AddAutoMapper();
+			
+	10.1.- Para que el mapper funcione, hay que crear una carpeta "Helpers" y agregar un archivo llamado
+	
+		Helpers/AutoMapperProfiles.cs
+		
+		Aqui agregaremos manualmente cada tabla (entidad o modelo, es decir, la clase .cs, ejemplo Usuario.cs) para que se mapee automaticamente a los DTO's que indiquemos al compilar el proyecto
+		
+		Esto se hace magicamente, porque no encontre la forma en que se relacione la nueva clase AutoMapperProfiles.cs con la configuración inicial, al parecer, lo detecta autómaticamente, quizás por la clase que hereda "Profile"
+	
+11.- Añadimos los CORS, esa madre que impide hacer peticiones a api's no hosteadas con la mismo host que el front
+
+12.- Agregamos
+		app.UseStaticFiles();
+	Que funciona para poder manipular archivos
+	
+13.- Queda pendiente implentar las herramientas para cargar archivos
+
+14.- Al compilar salió una excepción en relación con swagger:
+
+		System.IO.FileNotFoundException: 'Could not find file 'F:\ianso\Documents\source\repos\angular\bisonteca\bison-api\bin\Debug\net5.0\bison-api.xml'.'
+		
+		Se corrigió agregando el sig bloque de código
+				
+			if (!File.Exists(xmlPath))
+			{
+				File.Create(xmlPath);
+			}
+			
+		Pero salió otro error, en donde menciona que ese mismo archivo esta siendo utilizado por otro proceso >:c
+		
+		Olviden todo, solo hay que agregar esto al archivo del proyecto (bison-api.csproj)
+		
+			<GenerateDocumentationFile>true</GenerateDocumentationFile>
+			
+		O mas fácil, propiedades del proyecto -> compilación -> Salida -> Archivo de documentación XML
+
+15.- Awebo, funciono, ahora hay que cambiar el inicio del proyecto para que inicie con swagger
+
+		Propiedades -> Depurar -> Iniciar Explorador -> swagger
+		
+16.- El modo en que se configuro swagger, genera advertencias en todo el código si no se ponen comentarios /// summary, es molesto, para quitarlas, hay que especificar
+	que se ignore la adevertencia
+	
+		1591
+		
+	En
+	
+		Propiedades -> Compilación -> Errores y Advertencias -> Suprimir las advertencias
+		
+	
+17.- Se crearon las herramientas necesarias para usar el metodo repositorio
+
+		Api/IRepository.cs
+		Api/Repository.cs	// este es un ejemplo básico de creación
+		
+	Esto nos permitirá crear un repositorio por cada "tabla" de la bd, en donde tendrá métodos específicos que es necesiten por cada tabla,
+	como el CRUD, selects específicos, etc.
+	
+	Por cada repositorio, se crea una interfaz!
+	
+18.- Para que funcionen los repositorios, hay que agregarlos en el startup, en la funcion ConfigureServices, para que se pueda usar con inyección de dependencias
+
+19.- Para crear un repositorio (se usará un ejemplo de Usuario):
+
+	a) Creamos una interfaz Interface/IUsuarioRep.cs
+	b) Creamos la implementación de la interfaz Repository/UsuarioRep.cs
+	c) Creamos los DTOs necesarios, en este caso de ejemplo, un DTO generico: DTO/UsuarioDTO.cs
+	d) Agregamos el mapeo del DTO, en Helpers/AutoMapperProfiles.cs
+	e) Agregamos el servicio en Startup.cs en la función AgregarServicios
+	
+	
+	
+	
+	
+	
+	

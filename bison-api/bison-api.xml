@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>bison-api</name>
+    </assembly>
+    <members>
+        <member name="T:bison_api.Api.C">
+            <summary>
+            Clase que contiene constantes generales de la web api
+            </summary>
+        </member>
+        <member name="F:bison_api.Api.C.C_AUTH_EXPIRACION_TOKEN">
+            <summary>
+            Expiración de token en minutos
+            </summary>
+        </member>
+        <member name="T:bison_api.Api.F">
+            <summary>
+            Clase que contiene funciones generales de la web api
+            </summary>
+        </member>
+        <member name="M:bison_api.Controllers.UsuarioController.Login(bison_api.DTO.UsuarioLoginDTO)">
+            <summary>
+            Verifica coincidencias del usuario
+            </summary>
+            <param name="usuario">Usuario que se logeara</param>
+            <returns>Token con la información del usuario</returns>
+        </member>
+        <member name="M:bison_api.Controllers.UsuarioController.ReadAll">
+            <summary>
+            Obtiene todos los usuarios
+            </summary>
+            <returns>Lista de usuarios</returns>
+        </member>
+        <member name="M:bison_api.Controllers.UsuarioController.BuildToken(bison_api.DTO.UsuarioDTO,System.DateTime)">
+            <summary>
+            Construye un token de seguridad
+            </summary>
+            <param name="nodo">Usuario para obtener la informacion</param>
+            <param name="fechaExpiracion">Fecha en que expirará el token</param>
+            <returns>objeto anonimo con el token y su fecha de expiracion</returns>
+        </member>
+        <member name="T:bison_api.Helpers.AutoMapperProfiles">
+            <summary>
+            + Aquí se asignan los mapeos de las clases abstractas a sus respectivos DTOs
+            </summary>
+        </member>
+        <member name="T:bison_api.WeatherForecast">
+            <summary>
+            Entidad creada por default por la plantilla de ASP.NET Core 5
+            </summary>
+        </member>
+    </members>
+</doc>

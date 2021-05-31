@@ -1,0 +1,50 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+bison-app/dist
+bison-app/tmp
+bison-app/out-tsc
+# Only exists if Bazel was run
+bison-app/bazel-out
+
+# dependencies
+bison-app/node_modules
+
+# profiling files
+bison-app/chrome-profiler-events*.json
+
+# IDEs and editors
+bison-app/.idea
+bison-app/.project
+bison-app/.classpath
+bison-app/.c9/
+bison-app/*.launch
+bison-app/.settings/
+bison-app/*.sublime-workspace
+
+# IDE - VSCode
+bison-app/.vscode/*
+bison-app/!.vscode/settings.json
+bison-app/!.vscode/tasks.json
+bison-app/!.vscode/launch.json
+bison-app/!.vscode/extensions.json
+bison-app/.history/*
+
+# misc
+bison-app/.sass-cache
+bison-app/connect.lock
+bison-app/coverage
+bison-app/libpeerconnection.log
+bison-app/npm-debug.log
+bison-app/yarn-error.log
+bison-app/testem.log
+bison-app/typings
+
+# System Files
+bison-app/.DS_Store
+bison-app/Thumbs.db
+
+# api
+bison-api/.vs
+bison-api/obj
+bison-api/bin
