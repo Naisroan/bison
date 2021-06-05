@@ -66,12 +66,28 @@ namespace bison_api.Controllers
         /// </summary>
         /// <returns>Lista de usuarios</returns>
         [HttpGet("ReadAll")]
-        [AllowAnonymous]
         public async Task<ActionResult<List<UsuarioDTO>>> ReadAll()
         {
             try
             {
                 return await Rep.ReadAll();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Obtiene un usuario por su id
+        /// </summary>
+        /// <returns>Retorna un usuario, si no hubo coincidencia con su id, devuelve nulo</returns>
+        [HttpGet("Read")]
+        public async Task<ActionResult<UsuarioDTO>> Read(int id)
+        {
+            try
+            {
+                return await Rep.Read(id);
             }
             catch (Exception ex)
             {

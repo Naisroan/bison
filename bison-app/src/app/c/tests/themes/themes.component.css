@@ -1,0 +1,21 @@
+section {
+  margin-bottom: 3rem;
+}
+
+.example-label {
+  margin: 2rem 0;
+}
+
+.example-flex-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.mat-chip-list-wrapper {
+  width: 100%;
+}
+
+ul {
+  list-style: none;
+}

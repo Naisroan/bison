@@ -71,6 +71,40 @@
 	
 	Y por último agregarlo al @NgModule - imports
 	MaterialModule
+	
+14.- Vamos a agregar bootstrap para el tema responsive y las utilidades, para eso en el cmd de vs code ejecutamos el comando
+		
+		npm i bootstrap
+		
+	Creamos el archivo imports.scss y aqui importamos lo necesario para bootstrap
+		
+	Y ahora modificamos el archivo
+	
+		angular.json
+		
+	agregando en el arreglo de styles, el archivo imports.scss que creamos
+	
+15.- Se agrego el modulo
+
+		FormsModule
+		
+	Ya que daba error al tratar de usar [(ngModel)]
+	
+16.- Se agrego el modulo
+
+		ReactiveFormsModule
+		
+	Ya que daba error al tratar de usar [formControl]
+	
+17.- Hubo un problema al utilizar el datepicker del material, se soluciona agregando:
+
+		imports: [
+			MatDatepickerModule,
+			MatNativeDateModule 
+		  ],
+		  providers: [  
+			MatDatepickerModule,  
+		  ],
 			
 -- --------------------------------------------------
 -- BACK - ASP NET CORE 5

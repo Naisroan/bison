@@ -12,6 +12,8 @@ namespace bison_api.Interface
 
         public IMapper Mapper { get; }
 
+        public Task<UsuarioDTO> Read(int id);
+
         public Task<List<UsuarioDTO>> ReadAll();
 
         public Task<UsuarioDTO> IsValid(UsuarioLoginDTO usuario);

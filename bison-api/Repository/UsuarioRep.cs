@@ -18,6 +18,10 @@ namespace bison_api.Repository
             Context = cntx;
             Mapper = mapper;
         }
+        public async Task<UsuarioDTO> Read(int id)
+        {
+            return Mapper.Map<UsuarioDTO>(await Context.Usuario.FirstOrDefaultAsync(n => n.IdUsuario == id));
+        }
 
         public async Task<List<UsuarioDTO>> ReadAll()
         {

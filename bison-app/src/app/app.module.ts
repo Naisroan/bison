@@ -1,18 +1,22 @@
 // default
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 
 // utiles
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-// material
+// modulos de angular
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
+
+// modulos material
 import { MaterialModule } from './material-module';
 
 // componentes
 import { HelloBisontecaComponent } from './c/hello-bisonteca/hello-bisonteca.component';
 import { LoginComponent } from './c/login/login.component';
+import { ThemesComponent } from './c/tests/themes/themes.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +26,8 @@ import { LoginComponent } from './c/login/login.component';
 
     // componentes
     HelloBisontecaComponent,
-     LoginComponent
+     LoginComponent,
+     ThemesComponent
   ],
   imports: [
 
@@ -31,10 +36,14 @@ import { LoginComponent } from './c/login/login.component';
     AppRoutingModule,
     BrowserAnimationsModule,
 
+    // modulos de angular
+    ReactiveFormsModule,
+    FormsModule,
+
     // material
     MaterialModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

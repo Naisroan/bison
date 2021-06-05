@@ -32,6 +32,12 @@
             </summary>
             <returns>Lista de usuarios</returns>
         </member>
+        <member name="M:bison_api.Controllers.UsuarioController.Read(System.Int32)">
+            <summary>
+            Obtiene un usuario por su id
+            </summary>
+            <returns>Retorna un usuario, si no hubo coincidencia con su id, devuelve nulo</returns>
+        </member>
         <member name="M:bison_api.Controllers.UsuarioController.BuildToken(bison_api.DTO.UsuarioDTO,System.DateTime)">
             <summary>
             Construye un token de seguridad

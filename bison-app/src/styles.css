@@ -2,3 +2,13 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mat-menu-trigger .mat-icon {
+  margin-bottom: 0.2rem;
+}
+
+.mat-button-wrapper {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}

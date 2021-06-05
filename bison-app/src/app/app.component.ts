@@ -1,16 +1,20 @@
-import {ChangeDetectorRef, Component, OnDestroy} from '@angular/core';
-import {MediaMatcher} from '@angular/cdk/layout';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { MediaMatcher } from '@angular/cdk/layout';
+import Data from './data';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
-export class AppComponent implements OnDestroy {
-  title = 'bison-app';
+export class AppComponent implements OnDestroy, OnInit {
+  
+  title = 'bison ©';
+  theme = 'dark-theme';
   mobileQuery: MediaQueryList;
-
-  fillerNav = Array.from({length: 50}, (_, i) => `Nav Item ${i + 1}`);
+  opened: boolean;
+  menuItems = Data.menus;
 
   fillerContent = Array.from({length: 50}, () =>
       `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
@@ -25,12 +29,17 @@ export class AppComponent implements OnDestroy {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
+    // this.opened = !this.mobileQuery.matches;
+    this.opened = false;
+  }
+  ngOnInit(): void {
   }
 
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 
-  // shouldRun = [/(^|\.)plnkr\.co$/, /(^|\.)stackblitz\.io$/].some(h => h.test(window.location.host));
-  shouldRun = true
+  toggleTheme(): void {
+    this.theme = this.theme == 'dark-theme' ? 'light-theme' : 'dark-theme';
+  }
 }
