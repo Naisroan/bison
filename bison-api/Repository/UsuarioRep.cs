@@ -18,21 +18,38 @@ namespace bison_api.Repository
             Context = cntx;
             Mapper = mapper;
         }
-        public async Task<UsuarioDTO> Read(int id)
+
+        public async Task<int> Save()
         {
-            return Mapper.Map<UsuarioDTO>(await Context.Usuario.FirstOrDefaultAsync(n => n.IdUsuario == id));
+            return await Context.SaveChangesAsync();
         }
 
-        public async Task<List<UsuarioDTO>> ReadAll()
+        public async Task<Usuario> Create(Usuario usuario)
         {
-            return Mapper.Map<List<UsuarioDTO>>(await Context.Usuario.AsNoTracking().ToListAsync());
+            var nodo = Mapper.Map<Usuario>(usuario);
+            await Context.Usuario.AddAsync(nodo);
+
+            return nodo;
         }
 
-        public async Task<UsuarioDTO> IsValid(UsuarioLoginDTO usuario)
+        public async Task<Usuario> Exists(string email)
         {
-            var nodo = await Context.Usuario.FirstOrDefaultAsync(n => n.Nick == usuario.Nick && n.Pass == usuario.Pass);
+            return await Context.Usuario.FirstOrDefaultAsync(n => n.Email == email);
+        }
 
-            return nodo != null ? Mapper.Map<UsuarioDTO>(nodo) : null;
+        public async Task<Usuario> Read(int id)
+        {
+            return await Context.Usuario.FirstOrDefaultAsync(n => n.IdUsuario == id);
+        }
+
+        public async Task<List<Usuario>> ReadAll()
+        {
+            return await Context.Usuario.AsNoTracking().ToListAsync();
+        }
+
+        public async Task<Usuario> IsValid(Usuario usuario)
+        {
+            return await Context.Usuario.FirstOrDefaultAsync(n => n.Email == usuario.Email && n.Pass == usuario.Pass);
         }
     }
 }

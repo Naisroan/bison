@@ -12,10 +12,16 @@ namespace bison_api.Interface
 
         public IMapper Mapper { get; }
 
-        public Task<UsuarioDTO> Read(int id);
+        public Task<int> Save();
 
-        public Task<List<UsuarioDTO>> ReadAll();
+        public Task<Usuario> Exists(string email);
 
-        public Task<UsuarioDTO> IsValid(UsuarioLoginDTO usuario);
+        public Task<Usuario> Create(Usuario usuario);
+
+        public Task<Usuario> Read(int id);
+
+        public Task<List<Usuario>> ReadAll();
+
+        public Task<Usuario> IsValid(Usuario usuario);
     }
 }

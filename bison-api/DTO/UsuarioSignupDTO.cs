@@ -5,9 +5,10 @@ using System.Threading.Tasks;
 
 namespace bison_api.DTO
 {
-    public class UsuarioLoginDTO
+    public class UsuarioSignupDTO
     {
-        public string Email { get; set; }
+        public string Nick { get; set; }
         public string Pass { get; set; }
+        public string Email { get; set; }
     }
 }

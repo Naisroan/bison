@@ -29,5 +29,11 @@ namespace bison_api.Api
         /// Expiración de token en minutos
         /// </summary>
         public static readonly int C_AUTH_EXPIRACION_TOKEN = 60;
+
+        public enum ROL
+        {
+            ADMIN = 1,
+            USUARIO = 2
+        }
     }
 }

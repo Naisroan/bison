@@ -13,6 +13,9 @@ namespace bison_api.Helpers
         {
             // Usuario.cs
             CreateMap<Usuario, UsuarioDTO>().ReverseMap();
+            CreateMap<Usuario, UsuarioLoginDTO>().ReverseMap();
+            CreateMap<Usuario, UsuarioSignupDTO>().ReverseMap();
+            CreateMap<Usuario, UsuarioTokenDTO>().ReverseMap();
         }
     }
 }

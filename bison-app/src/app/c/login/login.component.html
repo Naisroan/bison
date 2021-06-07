@@ -1,37 +1,138 @@
-<mat-grid-list cols="1" rowHeight="100vh" class="bg text-white">
-  <mat-grid-tile>
-    <div class="container-fluid">
-      <div class="row text-center">
-        <div class="col-12 mb-5">
+<div class="login-component container text-white">
+
+  <mat-spinner class="mx-auto" *ngIf="loading"></mat-spinner>
+
+  <div class="row"> <!-- row -->
+
+    <!-- login -->
+    <div class="col-12 col-lg-4 col-xl-3 mx-auto" *ngIf="!loading && sectionIndex == 0">
+      <form id="login" (submit)="onFrmLoginSubmit()" [formGroup]="frmLogin" class="row text-center">
+        <div class="col-12 my-3">
           <h1 class="">Iniciar Sesión</h1>
         </div>
         <div class="col-12 mb-3">
-          <mat-form-field appearance="fill">
+          <mat-form-field appearance="fill" class="w-100">
             <mat-label>Correo</mat-label>
-            <input matInput placeholder="pat@example.com" [formControl]="email" required>
+            <input matInput placeholder="pat@example.com" formControlName="email" required>
             <button mat-icon-button matSuffix>
               <mat-icon>account_circle</mat-icon>
             </button>
-            <mat-error *ngIf="email.invalid"> {{ getErrorMessage("email") }} </mat-error>
+            <mat-error *ngIf="frmLogin.controls['email'].invalid">
+              {{ getErrorMessageForLogin("email") }}
+            </mat-error>
           </mat-form-field>
         </div>
         <div class="col-12 mb-3">
-          <mat-form-field appearance="fill">
+          <mat-form-field appearance="fill" class="w-100">
             <mat-label>Contraseña</mat-label>
-            <input matInput placeholder="************" [formControl]="password" required [type]="hide ? 'password' : 'text'">
+            <input matInput placeholder="************" formControlName="password" required [type]="hide ? 'password' : 'text'">
             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Ocultar password'" [attr.aria-pressed]="hide">
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
-            <mat-error *ngIf="password.invalid"> {{ getErrorMessage("password") }} </mat-error>
+            <mat-error *ngIf="frmLogin.controls['password'].invalid">
+              {{ getErrorMessageForLogin("password") }}
+            </mat-error>
           </mat-form-field>
         </div>
-        <div class="col-12 my-5">
-          <button mat-raised-button color="primary">
+        <div class="col-12 mb-3">
+          <button type="submit" mat-raised-button color="primary" [disabled]="frmLogin.invalid">
             <mat-icon class="me-2">login</mat-icon>
             <span>Continuar</span>
           </button>
         </div>
-      </div>
+        <div class="col-12 mb-3">
+          <hr>
+        </div>
+        <div class="col-12 mb-3">
+          <span>¿No tienes una cuenta? </span>
+          <button mat-button color="accent" (click)="sectionIndex = 1">
+            <span>Haz click aqui para registrarte</span>
+          </button>
+        </div>
+      </form>
     </div>
-  </mat-grid-tile>
-</mat-grid-list>
+    
+    <!-- registro -->
+    <div class="col-12 col-lg-4 col-xl-3 mx-auto" *ngIf="!loading && sectionIndex == 1">
+      <form id="register" (submit)="onFrmRegistroSubmit()" [formGroup]="frmRegistro" class="row text-center">
+        <div class="col-12 my-3">
+          <h1 class="">Registrarse</h1>
+        </div>
+        <div class="col-12 mb-3">
+          <mat-form-field appearance="fill" class="w-100">
+            <mat-label>Alias</mat-label>
+            <input matInput placeholder="pat" formControlName="new_nick" required>
+            <mat-error *ngIf="frmRegistro.controls['new_nick'].invalid">
+              {{ getErrorMessageForRegister("new_nick") }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-12 mb-3">
+          <mat-form-field appearance="fill" class="w-100">
+            <mat-label>Correo</mat-label>
+            <input matInput placeholder="pat@example.com" formControlName="new_email" required>
+            <mat-error *ngIf="frmRegistro.controls['new_email'].invalid">
+              {{ getErrorMessageForRegister("new_email") }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-12 mb-3">
+          <mat-form-field appearance="fill" class="w-100">
+            <mat-label>Confirmar correo</mat-label>
+            <input matInput placeholder="pat@example.com" formControlName="new_confirm_email" required>
+            <mat-error *ngIf="frmRegistro.controls['new_confirm_email'].invalid">
+              {{ getErrorMessageForRegister("new_confirm_email") }}
+            </mat-error>
+            <mat-error *ngIf="frmRegistro.controls['new_confirm_email'].hasError('mismatch')">
+              {{ getErrorMessageForRegister("confirm_email") }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-12 mb-3">
+          <mat-form-field appearance="fill" class="w-100">
+            <mat-label>Contraseña</mat-label>
+            <input matInput placeholder="************" formControlName="new_password" required [type]="hide ? 'password' : 'text'">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Ocultar password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error *ngIf="frmRegistro.controls['new_password'].invalid">
+              {{ getErrorMessageForRegister("new_password") }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-12 mb-3">
+          <mat-form-field appearance="fill" class="w-100">
+            <mat-label>Confirmar contraseña</mat-label>
+            <input matInput placeholder="************" formControlName="new_confirm_password" required [type]="hide ? 'password' : 'text'">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Ocultar password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error *ngIf="frmRegistro.controls['new_confirm_password'].invalid">
+              {{ getErrorMessageForRegister("new_password") }}
+            </mat-error>
+            <mat-error *ngIf="frmRegistro.controls['new_confirm_password'].hasError('mismatch')">
+              {{ getErrorMessageForRegister("confirm_password") }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-12 mb-3">
+          <button mat-raised-button color="primary" [disabled]="frmRegistro.invalid">
+            <mat-icon class="me-2">how_to_reg</mat-icon>
+            <span>Registrarse</span>
+          </button>
+        </div>
+        <div class="col-12 mb-3">
+          <hr>
+        </div>
+        <div class="col-12 mb-3">
+          <span>¿Ya te haz registrado o ya tienes una cuenta? </span>
+          <button mat-button color="accent" (click)="sectionIndex = 0">
+            <span>Haz click aqui para iniciar sesión</span>
+          </button>
+        </div>
+      </form>
+    </div>
+
+  </div> <!-- /row -->
+
+</div>

@@ -26,6 +26,13 @@
             <param name="usuario">Usuario que se logeara</param>
             <returns>Token con la información del usuario</returns>
         </member>
+        <member name="M:bison_api.Controllers.UsuarioController.Create(bison_api.DTO.UsuarioSignupDTO)">
+            <summary>
+            Crea un usuario
+            </summary>
+            <param name="usuario">Usuario a crear</param>
+            <returns>El usuario creado</returns>
+        </member>
         <member name="M:bison_api.Controllers.UsuarioController.ReadAll">
             <summary>
             Obtiene todos los usuarios
@@ -38,7 +45,7 @@
             </summary>
             <returns>Retorna un usuario, si no hubo coincidencia con su id, devuelve nulo</returns>
         </member>
-        <member name="M:bison_api.Controllers.UsuarioController.BuildToken(bison_api.DTO.UsuarioDTO,System.DateTime)">
+        <member name="M:bison_api.Controllers.UsuarioController.BuildToken(bison_api.Model.Usuario,System.DateTime)">
             <summary>
             Construye un token de seguridad
             </summary>

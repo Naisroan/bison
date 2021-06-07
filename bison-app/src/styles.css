@@ -12,3 +12,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   justify-content: center;
   display: flex;
 }
+
+hr {
+  opacity: 0.3;
+}

@@ -17,6 +17,7 @@ import { MaterialModule } from './material-module';
 import { HelloBisontecaComponent } from './c/hello-bisonteca/hello-bisonteca.component';
 import { LoginComponent } from './c/login/login.component';
 import { ThemesComponent } from './c/tests/themes/themes.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,10 @@ import { ThemesComponent } from './c/tests/themes/themes.component';
     FormsModule,
 
     // material
-    MaterialModule
+    MaterialModule,
+
+    // http
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],
