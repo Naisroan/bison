@@ -1,5 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 
+:root {
+  --bison: #ab47bc;
+  --bison-light: #b87ac3;
+}
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
@@ -15,4 +20,20 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 hr {
   opacity: 0.3;
+}
+
+.text-bison {
+  color: var(--bison);
+}
+
+.bg-bison {
+  background-color: var(--bison);
+}
+
+.text-bison-light {
+  color: var(--bison-light);
+}
+
+.bg-bison-light {
+  background-color: var(--bison-light);
 }

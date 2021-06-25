@@ -1,0 +1,143 @@
+.banner {
+  /* background-image: linear-gradient(180deg, rgb(243,241,236) 13%, transparent 13%), repeating-linear-gradient(180deg, rgb(138,193,207) 0px, rgb(138,193,207) 2px, transparent 2px, transparent 38px), linear-gradient(rgb(243,241,236),rgb(243,241,236)); */
+  background-attachment: fixed;
+  background-position: center center;
+  /* background-size: cover; */
+  background-repeat: no-repeat;
+  /* margin-top: -4rem; */
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.banner,
+.banner .container {
+  max-height: 480px;
+  min-height: 480px;
+}
+
+.banner .container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.banner h1 {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: block;
+  color: var(--bison);
+  /* font-size: 124px; */
+  letter-spacing: 3rem;
+  cursor: pointer;
+}
+
+.banner h1::before {
+  content: "bison";
+  position: absolute;
+  color: transparent;
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent 0,
+    transparent 2px,
+    white 2px,
+    white 4px
+  );
+  -webkit-background-clip: text;
+  top: 0px;
+  left: 0;
+  z-index: -1;
+  transition: 1s;
+}
+
+.banner h1::after {
+  content: "bison";
+  position: absolute;
+  color: transparent;
+  background-image: repeating-linear-gradient(
+    135deg,
+    transparent 0,
+    transparent 2px,
+    white 2px,
+    white 4px
+  );
+  -webkit-background-clip: text;
+  top: 0px;
+  left: 0px;
+  transition: 1s;
+}
+
+.banner h1::after,
+.banner h1::before {
+  -webkit-animation: movimientoBarras 2s ease infinite;
+  -moz-animation: movimientoBarras 2s ease infinite;
+  animation: movimientoBarras 2s ease infinite;
+}
+
+.banner h1:before {
+  top: 10px;
+  left: 10px;
+}
+
+.banner h1:after {
+  top: -10px;
+  left: -10px;
+}
+
+.banner h1:hover:before {
+  top: -10px;
+  left: -10px;
+}
+
+.banner h1:hover:after {
+  top: 10px;
+  left: 10px;
+} 
+
+.banner .container h1 {
+  font-weight: bold;
+}
+
+.banner .container p {
+  font-weight: bolder;
+}
+
+.banner .bg,
+#banner-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.banner .bg {
+  background-color: black;
+  z-index: -2;
+}
+
+#banner-video {
+  top: -140px;
+  height: auto;
+  opacity: 1;
+  z-index: -1;
+}
+
+@-webkit-keyframes movimientoBarras {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+@-moz-keyframes movimientoBarras {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+@keyframes movimientoBarras {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
