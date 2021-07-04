@@ -98,6 +98,7 @@ CREATE TABLE seg.usuario
 	ap_materno		VARCHAR(50) NULL,
 	activo			BIT NOT NULL DEFAULT 1,
 	ruta_imagen		VARCHAR(250) NOT NULL DEFAULT 'assets/user_image_default.png',
+	theme			VARCHAR(30) NULL,
 	fecha_alta		DATETIME NOT NULL DEFAULT GETDATE(),
 	fecha_mod		DATETIME NOT NULL DEFAULT GETDATE()
 )

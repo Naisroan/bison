@@ -37,3 +37,7 @@ hr {
 .bg-bison-light {
   background-color: var(--bison-light);
 }
+
+.text-all-petite-caps {
+  font-variant-caps: all-petite-caps;
+}

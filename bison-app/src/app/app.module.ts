@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 // utiles
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
 
 // modulos de angular
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -16,8 +17,8 @@ import { MaterialModule } from './material-module';
 // componentes
 import { HelloBisontecaComponent } from './c/hello-bisonteca/hello-bisonteca.component';
 import { LoginComponent } from './c/login/login.component';
-import { ThemesComponent } from './c/tests/themes/themes.component';
-import { HttpClientModule } from '@angular/common/http';
+import { MasterMenuComponent } from './c/master-menu/master-menu.component';
+import { CursosListComponent } from './c/cursos-list/cursos-list.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { HttpClientModule } from '@angular/common/http';
     // componentes
     HelloBisontecaComponent,
      LoginComponent,
-     ThemesComponent
+     MasterMenuComponent,
+     CursosListComponent
   ],
   imports: [
 

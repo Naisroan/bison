@@ -1,0 +1,24 @@
+<nav class="">
+  <ng-container *ngFor="let menu of menus">
+    <a mat-button routerLink="{{menu.url}}" matTooltip="{{menu.descripcion}}" matTooltipPosition="above" *ngIf="menu.id_padre == null || menu.id_padre <= 0">
+      <mat-icon class="me-2">{{menu.icono}}</mat-icon>
+      <span>
+        {{menu.titulo}}
+      </span>
+    </a>
+    <button mat-button [matMenuTriggerFor]="sub_menu" matTooltip="{{menu.descripcion}}" matTooltipPosition="above" *ngIf="menu.id_padre != null && menu.id_padre > 0 && menu.id_padre == menu.id_menu">
+      <mat-icon class="me-2">{{menu.icono}}</mat-icon>
+      <span>
+        {{menu.titulo}}
+      </span>
+      <mat-icon class="ms-1">expand_more</mat-icon>
+    </button>
+    <mat-menu #sub_menu="matMenu">
+      <a mat-menu-item routerLink="{{childMenu.url}}" matTooltip="{{childMenu.descripcion}}" matTooltipPosition="right" *ngFor="let childMenu of getChildMenus(menu.id_menu)">
+        <span>
+          {{childMenu.titulo}}
+        </span>
+      </a>
+    </mat-menu>
+  </ng-container>
+</nav>

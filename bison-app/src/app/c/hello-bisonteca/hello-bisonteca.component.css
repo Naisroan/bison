@@ -12,8 +12,9 @@
 
 .banner,
 .banner .container {
-  max-height: 480px;
+  height: calc(100vh - 64px);
   min-height: 480px;
+  position: relative;
 }
 
 .banner .container {
@@ -23,6 +24,7 @@
 }
 
 .banner h1 {
+  /* height: 100%; */
   position: absolute;
   left: 50%;
   top: 50%;
@@ -30,8 +32,9 @@
   display: block;
   color: var(--bison);
   /* font-size: 124px; */
-  letter-spacing: 3rem;
+  letter-spacing: 1rem;
   cursor: pointer;
+  /* width: 100%; */
 }
 
 .banner h1::before {
@@ -120,7 +123,7 @@
 }
 
 #banner-video {
-  top: -140px;
+  top: -10px;
   height: auto;
   opacity: 1;
   z-index: -1;
@@ -140,4 +143,41 @@
   0%{background-position:0% 50%}
   50%{background-position:100% 50%}
   100%{background-position:0% 50%}
+}
+
+@media (max-width: 959.98px) {
+  .banner h1 {
+    font-size: 4rem;
+  }
+
+  .banner h1:before {
+    top: 5px;
+    left: 5px;
+  }
+  
+  .banner h1:after {
+    top: -5px;
+    left: -5px;
+  }
+  
+  .banner h1:hover:before {
+    top: -5px;
+    left: -5px;
+  }
+  
+  .banner h1:hover:after {
+    top: 5px;
+    left: 5px;
+  }
+
+  #banner-video {
+    height: 100%;
+    top: 0px;
+    transform: scale(3);
+  }
+
+  .banner,
+  .banner .container {
+    height: calc(100vh - 56px);
+  }
 }

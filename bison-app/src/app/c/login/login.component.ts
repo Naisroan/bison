@@ -1,9 +1,8 @@
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
+import { FormControl, FormGroup, Validators} from '@angular/forms';
 import { Usuario } from 'src/app/s/usuario/usuario.model';
 import { UsuarioService } from 'src/app/s/usuario/usuario.service';
-import { MustMatch } from 'src/app/h/must-match.validator';
 import { StorageService } from 'src/app/s/usuario/storage.service';
 import { Session } from 'src/app/s/usuario/session.model';
 
@@ -27,8 +26,8 @@ export class LoginComponent implements OnInit {
     this.usuario = new Usuario();
 
     this.frmLogin = new FormGroup({
-      email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required]),
+      email: new FormControl('iansolis98@outlook.com', [Validators.required, Validators.email]),
+      password: new FormControl('admin', [Validators.required]),
     });
     
     this.frmRegistro = new FormGroup({

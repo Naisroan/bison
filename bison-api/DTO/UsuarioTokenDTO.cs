@@ -30,6 +30,7 @@ namespace bison_api.DTO
         public bool? Activo { get; set; }
 
         public string RutaImagen { get; set; }
+        public string Theme { get; set; }
 
         public DateTime FechaAlta { get; set; }
 

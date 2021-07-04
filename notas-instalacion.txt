@@ -264,7 +264,9 @@
 	d) Agregamos el mapeo del DTO, en Helpers/AutoMapperProfiles.cs
 	e) Agregamos el servicio en Startup.cs en la función AgregarServicios
 	
-	
+20.- Para actualizar los modelos podemos ejecutar de nuevo el comando de Scaffold-DbContext con toda la conexion:
+
+	Scaffold-DbContext -Connection 'data source=NAISROAN-Y720\SQL19E;initial catalog=bison;persist security info=True;user id=sa;password=a1234567890A;' -Provider 'Microsoft.EntityFrameworkCore.SqlServer' -ContextDir 'Model' -OutputDir 'Model' -NoOnConfiguring -NoPluralize -Force
 	
 	
 	

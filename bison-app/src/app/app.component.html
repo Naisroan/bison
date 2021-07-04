@@ -1,4 +1,4 @@
-<div class="{{ theme }}" [class.example-is-mobile]="mobileQuery.matches">
+<div class="{{ theme }} h-100 w-100 mat-app-background" [class.example-is-mobile]="mobileQuery.matches">
 
   <app-login *ngIf="!storage.isAuthenticated()"></app-login>
 
@@ -8,10 +8,10 @@
       <mat-sidenav #snav [(opened)]="opened" [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="0">
         <mat-nav-list>
           <!-- items de menu -->
-          <mat-list-item class="menu-item mb-3" routerLink="." *ngFor="let menu of menuItems">
+          <mat-list-item class="menu-item h-auto mb-3" routerLink="." *ngFor="let menu of menuItems">
             <div class="text-center">
-              <mat-icon matListIcon>{{menu.icono}}</mat-icon>
-              <h5 matLine>{{ menu.titulo }}</h5>
+              <mat-icon class="my-3" matListIcon>{{menu.icono}}</mat-icon>
+              <h5 class="text-all-petite-caps m-0 mb-3" matLine>{{ menu.titulo }}</h5>
             </div>
           </mat-list-item>
         </mat-nav-list>
@@ -21,16 +21,15 @@
   
         <!-- barra superior -->
         <mat-toolbar>
+
           <button mat-icon-button class="example-icon" (click)="opened = !opened" *ngIf="mobileQuery.matches">
             <mat-icon>menu</mat-icon>
           </button>
-          <mat-nav-list dense class="d-flex pt-0" *ngIf="!mobileQuery.matches">
-            <mat-list-item routerLink="." *ngFor="let menu of menuItems">
-              <mat-icon matListIcon>{{menu.icono}}</mat-icon>
-              <div class="text">{{ menu.titulo }}</div>
-            </mat-list-item>
-          </mat-nav-list>
+
+          <app-master-menu *ngIf="!mobileQuery.matches"></app-master-menu>
+          
           <span class="example-spacer"></span>
+          
           <button mat-button [matMenuTriggerFor]="menu">
             <mat-icon class="me-2">account_circle</mat-icon>
             <!-- <span>Mi cuenta</span> -->
@@ -48,14 +47,16 @@
               <span>Cerrar sesión</span>
             </button>
           </mat-menu>
-          <button mat-icon-button class="" (click)="toggleTheme()">
+          <button mat-icon-button class="" (click)="toggleTheme()" matTooltip="Cambia el color de la interfaz" matTooltipPosition="above">
             <mat-icon *ngIf="theme == 'dark-theme'">brightness_low</mat-icon>
             <mat-icon *ngIf="theme == 'light-theme'">dark_mode</mat-icon>
           </button>
+          
         </mat-toolbar>
   
         <!-- contenido -->
-        <hello-bisonteca></hello-bisonteca>
+        <router-outlet></router-outlet>
+        <!-- <hello-bisonteca></hello-bisonteca> -->
         
       </mat-sidenav-content>
   
@@ -63,5 +64,3 @@
   </div>
 
 </div>
-
-<router-outlet></router-outlet>

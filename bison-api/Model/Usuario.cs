@@ -17,6 +17,7 @@ namespace bison_api.Model
         public string ApMaterno { get; set; }
         public bool? Activo { get; set; }
         public string RutaImagen { get; set; }
+        public string Theme { get; set; }
         public DateTime FechaAlta { get; set; }
         public DateTime FechaMod { get; set; }
     }

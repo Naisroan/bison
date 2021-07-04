@@ -20,16 +20,6 @@ namespace bison_api.Model
         public virtual DbSet<Rol> Rol { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                // #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                // optionsBuilder.UseSqlServer("data source=NAISROAN-Y720\\SQL19E;initial catalog=bison;persist security info=True;user id=sa;password=a1234567890A;");
-                optionsBuilder.UseSqlServer("");
-            }
-        }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "Modern_Spanish_CI_AS");
@@ -37,7 +27,7 @@ namespace bison_api.Model
             modelBuilder.Entity<Rol>(entity =>
             {
                 entity.HasKey(e => e.IdRol)
-                    .HasName("PK__rol__6ABCB5E04592D4F2");
+                    .HasName("PK__rol__6ABCB5E00977FACA");
 
                 entity.ToTable("rol", "cat");
 
@@ -68,7 +58,7 @@ namespace bison_api.Model
             modelBuilder.Entity<Usuario>(entity =>
             {
                 entity.HasKey(e => e.IdUsuario)
-                    .HasName("PK__usuario__4E3E04ADD1E75F9F");
+                    .HasName("PK__usuario__4E3E04AD43167918");
 
                 entity.ToTable("usuario", "seg");
 
@@ -130,6 +120,11 @@ namespace bison_api.Model
                     .IsUnicode(false)
                     .HasColumnName("ruta_imagen")
                     .HasDefaultValueSql("('assets/user_image_default.png')");
+
+                entity.Property(e => e.Theme)
+                    .HasMaxLength(30)
+                    .IsUnicode(false)
+                    .HasColumnName("theme");
             });
 
             OnModelCreatingPartial(modelBuilder);
