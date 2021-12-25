@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Session } from  'src/app/s/usuario/session.model';
+import { Session } from  'src/app/services/usuario/session.model';
 
 
 @Injectable({

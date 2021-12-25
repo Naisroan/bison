@@ -1,10 +1,10 @@
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators} from '@angular/forms';
-import { Usuario } from 'src/app/s/usuario/usuario.model';
-import { UsuarioService } from 'src/app/s/usuario/usuario.service';
-import { StorageService } from 'src/app/s/usuario/storage.service';
-import { Session } from 'src/app/s/usuario/session.model';
+import { Usuario } from 'src/app/services/usuario/usuario.model';
+import { UsuarioService } from 'src/app/services/usuario/usuario.service';
+import { StorageService } from 'src/app/services/usuario/storage.service';
+import { Session } from 'src/app/services/usuario/session.model';
 
 @Component({
   selector: 'app-login',

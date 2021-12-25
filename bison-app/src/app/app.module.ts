@@ -15,10 +15,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { MaterialModule } from './material-module';
 
 // componentes
-import { HelloBisontecaComponent } from './c/hello-bisonteca/hello-bisonteca.component';
-import { LoginComponent } from './c/login/login.component';
-import { MasterMenuComponent } from './c/master-menu/master-menu.component';
-import { CursosListComponent } from './c/cursos-list/cursos-list.component';
+import { HelloBisontecaComponent } from './components/hello-bisonteca/hello-bisonteca.component';
+import { MasterMenuComponent } from './components/master-menu/master-menu.component';
+import { CursosListComponent } from './components/cursos/cursos-list/cursos-list.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -28,9 +28,9 @@ import { CursosListComponent } from './c/cursos-list/cursos-list.component';
 
     // componentes
     HelloBisontecaComponent,
-     LoginComponent,
-     MasterMenuComponent,
-     CursosListComponent
+    LoginComponent,
+    MasterMenuComponent,
+    CursosListComponent
   ],
   imports: [
 

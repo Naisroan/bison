@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CursosListComponent } from './c/cursos-list/cursos-list.component';
-import { HelloBisontecaComponent } from './c/hello-bisonteca/hello-bisonteca.component';
+import { CursosListComponent } from './components/cursos/cursos-list/cursos-list.component';
+import { HelloBisontecaComponent } from './components/hello-bisonteca/hello-bisonteca.component';
 
 const routes: Routes = [
   { path: '', component: HelloBisontecaComponent },
